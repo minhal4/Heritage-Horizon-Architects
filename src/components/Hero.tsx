@@ -45,11 +45,11 @@ function StatItem({ target, suffix, label }: { target: number; suffix: string; l
   const ref = useRef<HTMLSpanElement>(null);
   useCountUp(ref, target, suffix);
   return (
-    <div>
-      <span ref={ref} className="block font-['Palatino_Linotype',Palatino,serif] text-[2.4rem] text-[#c9973a] leading-none">
+    <div className="min-w-[90px]">
+      <span ref={ref} className="block font-['Palatino_Linotype',Palatino,serif] text-[2.6rem] text-[#c9973a] leading-none mb-2">
         0{suffix}
       </span>
-      <span className="block text-[.7rem] tracking-[.12em] uppercase text-[#6b6357] mt-1">{label}</span>
+      <span className="block text-[.72rem] tracking-[.14em] uppercase text-[#a09890] leading-snug">{label}</span>
     </div>
   );
 }
@@ -117,8 +117,15 @@ export function Hero() {
           </div>
 
           {/* stats */}
-          <div className="flex flex-wrap gap-12 mt-16 pt-10 border-t border-[rgba(201,151,58,0.15)] opacity-0 animate-[fadeUp_.9s_ease_1.5s_forwards]">
-            {stats.map(s => <StatItem key={s.label} {...s} />)}
+          <div className="flex flex-wrap gap-x-10 gap-y-8 mt-16 pt-10 border-t border-[rgba(201,151,58,0.15)] opacity-0 animate-[fadeUp_.9s_ease_1.5s_forwards]">
+            {stats.map((s, i) => (
+              <div key={s.label} className="flex items-stretch gap-10">
+                <StatItem {...s} />
+                {i < stats.length - 1 && (
+                  <div className="w-px bg-[rgba(201,151,58,0.15)] self-stretch hidden sm:block" />
+                )}
+              </div>
+            ))}
           </div>
         </div>
 
